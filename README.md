@@ -24,7 +24,7 @@
   events.emit('custom-event', arg1, arg2, ...args)
   events.emit(['custom-event-1', 'custom-event-2'])
   ```
-- 取消订阅事件，不传事件名称，则取消所有评阅事件
+- 取消订阅事件，不传参事件名称，则取消所有订阅事件
   ```
   events.off('custom-event', function_name)
   events.off('custom-event')
