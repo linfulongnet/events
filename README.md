@@ -25,8 +25,8 @@
   events.emit(['custom-event-1', 'custom-event-2'])
   ```
 - 取消订阅事件，不传事件名称，则取消所有评阅事件
- ```
- events.off('custom-event', function_name)
- events.off('custom-event')
- events.off()
- ```
+  ```
+  events.off('custom-event', function_name)
+  events.off('custom-event')
+  events.off()
+  ```
