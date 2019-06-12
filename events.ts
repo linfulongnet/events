@@ -22,7 +22,7 @@ export default {
   emit(event: string | string[], ...args: any[]): void {
     if (Array.isArray(event)) {
       event.forEach((eventName) => {
-        this.emit(eventName, args)
+        this.emit(eventName, ...args)
       })
       return
     }
