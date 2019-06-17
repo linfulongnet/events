@@ -55,7 +55,8 @@ export default {
       this.off(event, wrapper)
       fn.apply(this, args)
     }
-
+    wrapper.fn = fn
+    
     this.on(event, wrapper)
   },
   // 解绑事件，没有参数则清空所有订阅事件，fn不存在则解绑事件所有回调
@@ -78,13 +79,11 @@ export default {
       return
     }
 
-    // 订阅事件时，可能绑定调用对象(this)，保存的方法与解绑时的方法已经变更，
-    // 绑定this后，方法名称为: bound method-name，可依此与传入的解绑函数判断解绑的是同一方法
-    const methodNameReg: RegExp = /(bound\s)?(?<name>\S*)$/i
     let events: Function[] = getMap(eventName)
     events = events.filter((method) => {
       // @ts-ignore
-      return fn.name.match(methodNameReg).groups.name !== method.name.match(methodNameReg).groups.name
+      const _fn: Function | undefined = method.fn
+      return !(method === fn || _fn === fn)
     })
 
     setMap(eventName, events)
